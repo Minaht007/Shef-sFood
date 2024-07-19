@@ -92,5 +92,129 @@
         "type": "cheese",
         "name": "Голубі сири",
         "img": "/img/cheeses/blueCheese.jpg"
+    },
+
+
+    {
+        "id": "fruit",
+        "type": "fruits",
+        "name": "Свіжи фрукти",
+        "img": "/img/fruitAndVeg/fruit.jpg"
+    },
+    {
+        "id": "veg",
+        "type": "fruits",
+        "name": "Свіжи овочі",
+        "img": "/img/fruitAndVeg/veg.jpg"
+    },
+    {
+        "id": "green",
+        "type": "fruits",
+        "name": "Зелень",
+        "img": "/img/fruitAndVeg/greens.jpg"
+    },
+
+    {
+        "id": "cokoeggs",
+        "type": "eggs",
+        "name": "Курячи",
+        "img": "/img/eggs/egs.jpg"
+    },
+    {
+        "id": "quailEggs",
+        "type": "eggs",
+        "name": "Перепелині",
+        "img": "/img/eggs/quailEggs.jpg"
+    },
+
+
+    {
+        "id": "cereals",
+        "type": "back",
+        "name": "Крупи",
+        "img": "/img/back/cereals.jpg"
+    },
+    {
+        "id": "pasta",
+        "type": "back",
+        "name": "Паста",
+        "img": "/img/back/pasta.jpg"
+    },
+    {
+        "id": "spices",
+        "type": "back",
+        "name": "Зелень",
+        "img": "/img/back/spices.jpg"
+    },
+    {
+        "id": "flour",
+        "type": "back",
+        "name": "Мука",
+        "img": "/img/back/flour.jpg"
+    },
+    {
+        "id": "oil",
+        "type": "back",
+        "name": "Олія",
+        "img": "/img/back/oil.jpg"
+    },
+
+
+    {
+        "id": "tea",
+        "type": "drink",
+        "name": "Чай",
+        "img": "/img/drinks/tea.jpg"
+    },
+    {
+        "id": "coffe",
+        "type": "drink",
+        "name": "Кава",
+        "img": "/img/drinks/coffe.jpg"
+    },
+    {
+        "id": "water",
+        "type": "drink",
+        "name": "Вода",
+        "img": "/img/drinks/water.jpg"
+    },
+    {
+        "id": "juice",
+        "type": "drink",
+        "name": "Сік",
+        "img": "/img/drinks/juice.jpg"
+    },
+    {
+        "id": "unalcogol",
+        "type": "drink",
+        "name": "ОлБезалкоголні напоїія",
+        "img": "/img/drinks/withoutAlcogolDrinks2.jpg"
+    },
+
+
+    {
+        "id": "nuts",
+        "type": "nut",
+        "name": "Горіхи",
+        "img": "/img/nuts/nuts.png"
+    },
+    {
+        "id": "sweets",
+        "type": "nut",
+        "name": "Cолодощі",
+        "img": "/img/nuts/sweets.png"
+    },
+    {
+        "id": "lukum",
+        "type": "nut",
+        "name": "Лукум",
+        "img": "/img/nuts/lukum.png"
+    },
+
+    {
+        "id": "green",
+        "type": "green",
+        "name": "Зелень",
+        "img": "/img/fruitAndVeg/greens.jpg"
     }
 ]
