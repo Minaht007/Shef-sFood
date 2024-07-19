@@ -6,11 +6,12 @@ module.exports = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-
     screens: {
       sm: { max: "767px" },
       md: { min: "768px" },
       desk: { min: "1201px" },
+      deskXL: {min: "1440px"},
+      desk2XL: {min: "1920px"}
       },
     extend: {
       backgroundImage: {     
@@ -20,8 +21,9 @@ module.exports = {
         mainColor: "#fff"
       },
       colors: {
-        mainTextColor: "#fbbf24"
-      }
+        mainTextColor: "#fbbf24",
+        linksTextColor: "#22c55e",        
+      },     
     },
   },
   plugins: [
@@ -37,7 +39,12 @@ module.exports = {
         },
         "@screen desk": {
           width: "100vw",
-          maxWidth: "1920px"
+        },
+        "@screen deskXL": {
+          width: "100vw",
+        },
+        "@screen desk2XL": {
+          width: "100vw",
         },
         },
       });

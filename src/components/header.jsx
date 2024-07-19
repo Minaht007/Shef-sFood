@@ -1,10 +1,11 @@
 import Image from "next/image"
 import Logo from "../../public/img/basketWithFoodLogo.jpg"
+import Menu from "./menu"
 
 const Header = () => {
 
    return (
-    <div className="flex flex-col mx-auto  sticky top-0 left-0  bg-mainColor max-w-[1920px] z-10">
+    <div className="flex flex-col mx-auto  sticky top-0 left-0  bg-mainColor layout z-10">
         <div className="flex flex-row items-center "> 
         <div className="flex px-16 py-3">
             <Image 
@@ -28,6 +29,10 @@ const Header = () => {
                 <use xlinkHref="/img/sprite/symbol-defs.svg#icon-basket-cart" />
             </svg>
         </div>
+        </div>
+
+        <div>
+        <Menu/>
         </div>
        
        

@@ -1,0 +1,96 @@
+[
+    {
+        "id": "cows",
+        "type": "meats",
+        "name": "Яловичина",
+        "img": "/img/meetHeaderMenu/cow.jpg"
+    },
+    {
+        "id": "pigs",
+        "type": "meats",
+        "name": "Свинина",
+        "img": "/img/meetHeaderMenu/pig.jpg"
+    },
+    {
+        "id": "birds",
+        "type": "meats",
+        "name": "Птиця",
+        "img": "/img/meetHeaderMenu/birds.jpg"
+    },
+    {
+        "id": "mutton",
+        "type": "meats",
+        "name": "Баранина",
+        "img": "/img/meetHeaderMenu/mutton.jpg"
+    },
+    {
+        "id": "stakes",
+        "type": "meats",
+        "name": "Стейки",
+        "img": "/img/meetHeaderMenu/stakes.jpg"
+    },
+
+
+    {
+        "id": "cowMilk",
+        "type": "milk",
+        "name": "Коров'че молоко",
+        "img": "/img/milkHeaderMenu/cowMilk.jpg"
+    },
+    {
+        "id": "goatMilk",
+        "type": "milk",
+        "name": "Козяче молоко",
+        "img": "/img/milkHeaderMenu/goatMilk.jpg"
+    },
+    {
+        "id": "cottageCheese",
+        "type": "milk",
+        "name": "Сир",
+        "img": "/img/milkHeaderMenu/cottageCheese.jpg"
+    },
+    {
+        "id": "creams",
+        "type": "milk",
+        "name": "Вершки",
+        "img": "/img/milkHeaderMenu/creams.jpg"
+    },
+    {
+        "id": "butter",
+        "type": "milk",
+        "name": "Масло",
+        "img": "/img/milkHeaderMenu/butter.jpg"
+    },
+
+
+    {
+        "id": "freshCheese",
+        "type": "cheese",
+        "name": "Свіди сири",
+        "img": "/img/cheeses/freshCheese.jpg"
+    },
+    {
+        "id": "softCheese",
+        "type": "cheese",
+        "name": "М'які сири",
+        "img": "/img/cheeses/softCheese2.jpg"
+    },
+    {
+        "id": "halfHardCheese",
+        "type": "cheese",
+        "name": "Напівтверді сири",
+        "img": "/img/cheeses/halfHardCheese.jpg"
+    },
+    {
+        "id": "hardCheese",
+        "type": "cheese",
+        "name": "Тверді сири",
+        "img": "/img/cheeses/hardCheese.jpg"
+    },
+    {
+        "id": "blueCheese",
+        "type": "cheese",
+        "name": "Голубі сири",
+        "img": "/img/cheeses/blueCheese.jpg"
+    }
+]

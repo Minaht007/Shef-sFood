@@ -1,0 +1,47 @@
+[
+    {
+        "id": "meet",
+        "type": "meats",
+        "name": "М'ясо"
+    },
+    {
+        "id": "milk",
+        "type": "milk",
+        "name": "Молочні продукти"
+    },
+    {
+        "id": "cheese",
+        "type": "cheese",
+        "name": "Сири"
+    },
+    {
+        "id": "fruits",
+        "type": "fruits",       
+        "name": "Фрукти та овочи"
+    },
+    {
+        "id": "eggs",
+        "type": "eggs",
+        "name": "Яйця"
+    },
+    {
+        "id": "back",
+        "type": "back",
+        "name": "Бакалія"
+    },
+    {
+        "id": "drinks",
+        "type": "drink",
+        "name": "Напої"
+    },
+    {
+        "id": "nuts",
+        "type": "nut",
+        "name": "Горіхи"
+    },
+    {
+        "id": "greens",
+        "type": "green",
+        "name": "Зелень"
+    }
+]
