@@ -1,9 +1,11 @@
 import Hero from "@/components/hero"
+import AllProducts from "./allProducts";
 
 const MainPage = () => {
     return (
-        <div>
+        <div className="layout">
             <Hero/>
+            <AllProducts/>
         </div>
     )
 }

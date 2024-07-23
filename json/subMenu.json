@@ -9,6 +9,7 @@
         "id": "pigs",
         "type": "meats",
         "name": "Свинина",
+        "subType": "pig",
         "img": "/img/meetHeaderMenu/pig.jpg"
     },
     {
@@ -20,13 +21,14 @@
     {
         "id": "mutton",
         "type": "meats",
+        "subType": "mutton",
         "name": "Баранина",
         "img": "/img/meetHeaderMenu/mutton.jpg"
     },
     {
         "id": "stakes",
         "type": "meats",
-        "name": "Стейки",
+        "name": "Маріноване м'ясо",
         "img": "/img/meetHeaderMenu/stakes.jpg"
     },
 
@@ -143,13 +145,13 @@
     {
         "id": "spices",
         "type": "back",
-        "name": "Зелень",
+        "name": "Спеції",
         "img": "/img/back/spices.jpg"
     },
     {
         "id": "flour",
         "type": "back",
-        "name": "Мука",
+        "name": "Борошно",
         "img": "/img/back/flour.jpg"
     },
     {
@@ -187,7 +189,7 @@
     {
         "id": "unalcogol",
         "type": "drink",
-        "name": "ОлБезалкоголні напоїія",
+        "name": "Безалкоголні напоїі",
         "img": "/img/drinks/withoutAlcogolDrinks2.jpg"
     },
 

@@ -18,7 +18,8 @@ module.exports = {
         "heroBgImg": "url('/img/hero/foodPackage.png')"
       },
       backgroundColor: {
-        mainColor: "#fff"
+        mainColor: "#fff",
+        headerMenuBgColor: "#f0fdf4"
       },
       colors: {
         mainTextColor: "#fbbf24",

@@ -12,8 +12,8 @@ const Header = () => {
             src={Logo}
             alt="logo"
             width={100}
-            height={160}
-            className="border-0 rounded-md"
+            height={200}
+            className="border-0 rounded-md w-[40px] h-60px desk:w-[80px] desk:h-[80px] deskXL:w-[100px] deskXL:h-[100px]  "
             />
         </div>
 

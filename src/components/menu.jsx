@@ -27,8 +27,8 @@ const Menu = () => {
     };   
 
     return (
-        <div className="layout" onMouseLeave={handleMenuLeave}>
-      <ul className="flex justify-center mx-auto bg-mainColor">
+        <div className="  layout" onMouseLeave={handleMenuLeave}>
+      <ul className="flex justify-center mx-auto bg-headerMenuBgColor">
         {menuList.map((item) => (
           <li
             key={item.id}
@@ -47,13 +47,13 @@ const Menu = () => {
           {selected.map((type) => (
             <li key={type.id} className=" px-4 py-2 mx-4  rounded-md justify-center ">
               <div className="flex flex-col w-full h-full items-center">
-                <div className=" pt-2">
+                <div className=" pt-2 ">
                   <Image 
                   src={type.img} 
                   alt="prodIcon"
                   width={60} 
                   height={60}                   
-                  className="object-cover border-0 rounded-md mx-auto w-[60px] h-[60px] my-auto deskXL:w-[80px]  deskXL:h-[80px] desk2XL:w-[100px]  desk2XL:h-[100px]"
+                  className="object-cover border-0 rounded-md mx-auto w-[60px] h-[60px] my-auto deskXL:w-[80px]  deskXL:h-[80px] desk2XL:w-[100px]  desk2XL:h-[100px] hover:scale-125 "
                   />
                 </div>
                 <p className="mt-3">{type.name}</p>
