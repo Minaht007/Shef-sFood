@@ -7,8 +7,9 @@ import { useAppContext } from "../context/context";
 const AllProducts = () => {
 
   const { selectProducts } = useAppContext([]);
+  
 
-  console.log(selectProducts)
+  // console.log(selectProducts)
 
   return (
     <div className="flex flex-row bg-mainColor layout">
