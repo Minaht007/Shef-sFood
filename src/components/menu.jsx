@@ -16,10 +16,7 @@ const Menu = () => {
       const handleMenuLeave = () => {
         setIsHover(false); 
       };
-
-    // const closeSubList = () => {
-    //     setIsHover(!isHover);        
-    // };
+  
 
     const filters = (type) => {
         const filteredItems = subMenu.filter((item) => item.type === type);

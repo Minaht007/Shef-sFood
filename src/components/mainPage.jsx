@@ -1,4 +1,4 @@
-import Hero from "@/components/hero"
+import Hero from "./hero"
 import AllProducts from "./allProducts";
 
 const MainPage = () => {
