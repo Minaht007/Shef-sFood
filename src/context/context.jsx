@@ -10,8 +10,17 @@ export function AppWrapper({ children }) {
     console.log(prodForCart)
 
     const selectProducts = (product) => {
-        setProdForCart([...prodForCart, product]);
-    };
+        setProdForCart((prev) => {
+          const productId = product.id;
+          const updatedCart = { ...prev };
+          if (updatedCart[productId]) {
+            updatedCart[productId].quantity++;
+          } else {
+            updatedCart[productId] = { ...product, quantity: 1 };
+          }
+          return updatedCart;
+        });
+      };
 
     return (
         <AppContext.Provider value={{ prodForCart: prodForCart, selectProducts: selectProducts }}>

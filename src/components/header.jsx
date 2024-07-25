@@ -16,9 +16,10 @@ const Header = () => {
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
-    // const openModal = ()=> {
-    //     setIsModalOpen(true)
-    // }
+    const onClickOutside = (e) => {
+        setIsModalOpen(false);
+    }
+
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
     };
@@ -51,21 +52,20 @@ const Header = () => {
             </div>
 
             {isModalOpen && (
-  <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-    <div className="bg-white p-4 rounded-lg w-[300px] h-[400px]">
-      <ModalWind onClose={() => setIsModalOpen(false)}>
-        <ul>
-          {prodForCart.length > 0 &&
-            prodForCart.map((product) => (
-              <li key={product.id} className="flex flex-col w-100 h-120">
-                {product.name} - {product.price} грн
-              </li>
-            ))}
-        </ul>
-      </ModalWind>
-    </div>
-  </div>
-)}
+                <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center" onClick={onClickOutside}>
+                    <div className="bg-white p-4 rounded-lg w-[300px] h-[400px]" >
+                        <ModalWind onClose={() => setIsModalOpen(false)}>
+                            <ul>
+                                {Object.keys(prodForCart).map((productId) => (
+                                    <li key={productId} className="flex flex-col w-100 h-120">
+                                        {prodForCart[productId].name} - {prodForCart[productId].price} грн x {prodForCart[productId].quantity}
+                                    </li>
+                                ))}
+                            </ul>
+                        </ModalWind>
+                    </div>
+                </div>
+            )}
 
             <div>
                 <Menu />
