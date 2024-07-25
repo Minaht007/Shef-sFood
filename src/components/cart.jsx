@@ -4,7 +4,6 @@ import { useAppContext } from "../context/context";
 
 const Cart = () => {
   const { prodForCart } = useAppContext([]);
-
   console.log(prodForCart);
 
   return (

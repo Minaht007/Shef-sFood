@@ -6,11 +6,13 @@ import { useState } from "react"
 import Cart from "../components/cart"
 import { useAppContext } from "../context/context"
 
+import ModalWind from "./modalWind"
+
 
 
 const Header = () => {
 
-    const {prodForCard}=useAppContext
+    const { prodForCart } = useAppContext()
 
     const [isModalOpen, setIsModalOpen] = useState(false)
 
@@ -19,7 +21,7 @@ const Header = () => {
     // }
     const toggleModal = () => {
         setIsModalOpen(!isModalOpen);
-      };
+    };
 
     return (
         <div className="flex flex-col mx-auto  sticky top-0 left-0  bg-mainColor layout z-10">
@@ -41,25 +43,29 @@ const Header = () => {
                     <p className="text-xl pl-10">Правила</p>
                 </div>
 
-                <div className="pr-6">
+                <div className="pr-6" onClick={toggleModal} >
                     <svg className="flex desk:w-16 desk:h-16 border-0 rounded-full">
                         <use xlinkHref="/img/sprite/symbol-defs.svg#icon-basket-cart" />
                     </svg>
-                </div>              
+                </div>
             </div>
 
             {isModalOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-4 rounded-lg">
-            <Cart /> 
-            <button className="absolute top-2 right-2" onClick={toggleModal}>
-              <svg className="flex w-5 h-5">
-                <use xlinkHref="/img/sprite/symbol-defs.svg#icon-close" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      )}
+  <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+    <div className="bg-white p-4 rounded-lg w-[300px] h-[400px]">
+      <ModalWind onClose={() => setIsModalOpen(false)}>
+        <ul>
+          {prodForCart.length > 0 &&
+            prodForCart.map((product) => (
+              <li key={product.id} className="flex flex-col w-100 h-120">
+                {product.name} - {product.price} грн
+              </li>
+            ))}
+        </ul>
+      </ModalWind>
+    </div>
+  </div>
+)}
 
             <div>
                 <Menu />
