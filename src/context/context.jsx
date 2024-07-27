@@ -12,22 +12,36 @@ export function AppWrapper({ children }) {
     setProdForCart((prev) => {
       const productId = product.id;
       const updatedCart = { ...prev };
+
       if (updatedCart[productId]) {
-        updatedCart[productId].quantity++;
+        updatedCart[productId].quantity += 1;
       } else {
         updatedCart[productId] = { ...product, quantity: 1 };
       }
+
       return updatedCart;
     });
   };
 
+  // const selectProducts = (product) => {
+  //   setProdForCart((prev) => {
+  //     const productId = product.id;
+  //     const updatedCart = { ...prev };
+  //     if (updatedCart[productId]) {
+  //       updatedCart[productId].quantity++;
+  //     } else {
+  //       updatedCart[productId] = { ...product, quantity: 1 };
+  //     }
+  //     return updatedCart;
+  //   });
+  // };
+
   const totalPrice = () => {
-    let total = 0;
-    Object.keys(prodForCart).forEach((productId) => {
-      total += prodForCart[productId].price * prodForCart[productId].quantity;
-    });
-    return total;
+    return Object.values(prodForCart).reduce((total, product) => {
+      return total + product.price * product.quantity;
+    }, 0);
   };
+
 
   return (
     <AppContext.Provider
@@ -46,3 +60,12 @@ export function useAppContext() {
   const context = useContext(AppContext);
   return context;
 }
+
+
+  // const totalPrice = () => {
+  //   let total = 0;
+  //   Object.keys(prodForCart).forEach((productId) => {
+  //     total += prodForCart[productId].price * prodForCart[productId].quantity;
+  //   });
+  //   return total;
+  // };

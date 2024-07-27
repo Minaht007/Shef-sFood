@@ -12,7 +12,7 @@ const AllProducts = () => {
   // console.log(selectProducts)
 
   return (
-    <div className="flex flex-row bg-mainColor layout">
+    <div className="flex flex-col bg-mainColor layout">
       <ul className="flex flex-row flex-wrap justify-center">
         {allProd.map((product) => (
           <li
@@ -49,6 +49,9 @@ const AllProducts = () => {
           </li>
         ))}
       </ul>
+
+         
+
     </div>
   );
 };

@@ -11,7 +11,7 @@ const Header = () => {
   const { prodForCart, totalPrice } = useAppContext();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [price, setPrice] = useState();
+  
 
   const onClickOutside = (e) => {
     setIsModalOpen(false);
@@ -24,14 +24,19 @@ const Header = () => {
   useSaveLocalCart("myCart", prodForCart);
 
   // const totalPrice = () => {
-  //     let total = 0;
-  //     prodForCart.forEach((product) => {
-  //         total += prodForCart.map((product) => {
-  //             return product.price * product.quantity;
-  //         } )
-  //         console.log(total);
-  //     });
-  //    return total
+  //   return prodForCart.reduce((total, product) => {
+  //     if (product.length > 0) { 
+  //       return total + product.price * product.quantity;
+  //     }
+  //     return total;
+  //   }, 0); 
+  // };
+  
+
+  // const totalPrice = () => {
+     // return Object.values(prodForCart).reduce((total, product) => {
+    //   return total + product.price * product.quantity;
+    // }, 0);
   // }
 
   return (
@@ -71,7 +76,8 @@ const Header = () => {
               <ul>
                 {Object.keys(prodForCart).map((productId) => (
                   <li key={productId} className="flex flex-col w-100 h-120">
-                    <p>
+                    <p className="w-8 h-8">{prodForCart[productId].img}</p>
+                    <p>                    
                       {prodForCart[productId].name} -{" "}
                       {prodForCart[productId].price} грн x{" "}
                       {prodForCart[productId].quantity}
@@ -79,7 +85,7 @@ const Header = () => {
                   </li>
                 ))}
               </ul>
-              <p>Вартість: {totalPrice}</p>
+              <p className="text-linksTextColor">Вартість: {totalPrice()}</p>
             </ModalWind>
           </div>
         </div>

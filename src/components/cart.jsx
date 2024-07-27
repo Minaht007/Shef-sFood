@@ -12,7 +12,7 @@ const Cart = () => {
     <ul>
       {Object.keys(prodForCart).map((productId) => (
         <li key={productId} className="flex flex-col w-100 h-120">
-          {prodForCart[productId].name} - {prodForCart[productId].price} грн x {prodForCart[productId].quantity}
+          {prodForCart[productId].img} - {prodForCart[productId].name} - {prodForCart[productId].price} грн x {prodForCart[productId].quantity}
         </li>
       ))}
     </ul>
