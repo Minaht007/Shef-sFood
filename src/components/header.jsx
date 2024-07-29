@@ -10,6 +10,8 @@ import useSaveLocalCart from "../hooks/saveCart";
 import СountIncrease from "./btm/btmIncrease";
 import СountDecrease from "./btm/btmDecrease";
 
+import SendToTelegram from "./sentToTelegram";
+
 const inputStyle =
   "desk:w-[400px] py-3 pl-2 mt-1 border-[1px] border-linksTextColor hover:border-inputHoverColor focus:border-red-400";
 
@@ -17,6 +19,9 @@ const Header = () => {
   const { prodForCart, totalPrice } = useAppContext();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [name, setName] = useState();
+  const [surname, setSurname] = useState();
+  const [phone, setPhone] = useState();
 
   // const onClickOutside = (e) => {
   //   setIsModalOpen(false);
@@ -34,7 +39,34 @@ const Header = () => {
       : "flex desk:w-16 desk:h-16 border-4 border-[#ef4444] rounded-full";
   };
 
-  console.log(basketIsActive);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      name,
+      surname,
+      phone,
+    };
+
+    try {
+      const response = await fetch("/api/send-to-telegram", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const result = await response.json();
+      console.log(result);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
   return (
     <div className="flex flex-col mx-auto  sticky top-0 left-0  bg-mainColor layout z-10">
@@ -78,13 +110,18 @@ const Header = () => {
               <h1 className="flex flex-row justify-center my-5 text-2xl">
                 Внесить ваші данні для замовлення
               </h1>
-              <form className="flex flex-col w-full items-center">
+
+              <form
+                className="flex flex-col w-full items-center"
+                onSubmit={handleSubmit}
+              >
                 <label htmlFor="Ім'я" className="flex flex-col mb-6">
                   Ім'я
                   <input
                     type="text"
                     placeholder="Введить своє ім'я"
                     className={inputStyle}
+                    value={name}
                   />
                 </label>
 
@@ -94,6 +131,7 @@ const Header = () => {
                     type="text"
                     placeholder="Ваше ім'я по батькові"
                     className={inputStyle}
+                    value={surname}
                   />
                 </label>
 
@@ -103,6 +141,7 @@ const Header = () => {
                     type="text"
                     placeholder="Введіть номер телефона"
                     className={inputStyle}
+                    value={phone}
                   />
                 </label>
 
@@ -136,15 +175,9 @@ const Header = () => {
                       </li>
                     );
                   })}
+                  <SendToTelegram name={name} surname={surname} phone={phone} />
                 </ul>
               </form>
-
-              <button
-                type="submit"
-                className=" flex px-8 py-3 border-0 rounded-md bg-btmBg mx-auto"
-              >
-                Замовити
-              </button>
             </ModalWind>
           </div>
         </div>
