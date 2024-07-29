@@ -25,9 +25,13 @@ export default async function handler(req, res) {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(body),
+          
         });
+        
   
         const result = await response.json();
+
+        console.log("Telegram API response:", result);
   
         if (result.ok) {
           res.status(200).json({ message: "Message sent successfully" });
