@@ -71,11 +71,3 @@ export function useAppContext() {
   return context;
 }
 
-
-  // const totalPrice = () => {
-  //   let total = 0;
-  //   Object.keys(prodForCart).forEach((productId) => {
-  //     total += prodForCart[productId].price * prodForCart[productId].quantity;
-  //   });
-  //   return total;
-  // };

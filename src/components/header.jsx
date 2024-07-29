@@ -7,11 +7,11 @@ import { useAppContext } from "../context/context";
 import ModalWind from "./modalWind";
 import useSaveLocalCart from "../hooks/saveCart";
 
-import СountIncrease from "./btm/btmIncrease"
-import СountDecrease from "./btm/btmDecrease"
+import СountIncrease from "./btm/btmIncrease";
+import СountDecrease from "./btm/btmDecrease";
 
-const inputStyle = "desk:w-[400px] py-3 pl-2 mt-1 border-[1px] border-linksTextColor hover:border-inputHoverColor focus:border-red-400"
-
+const inputStyle =
+  "desk:w-[400px] py-3 pl-2 mt-1 border-[1px] border-linksTextColor hover:border-inputHoverColor focus:border-red-400";
 
 const Header = () => {
   const { prodForCart, totalPrice } = useAppContext();
@@ -29,16 +29,12 @@ const Header = () => {
   useSaveLocalCart("myCart", prodForCart);
 
   const basketIsActive = () => {
-    return prodForCart.length === 0 ? 
-      "flex desk:w-16 desk:h-16 border-0 rounded-full"
-      : 
-      "flex desk:w-16 desk:h-16 border-4 border-[#ef4444] rounded-full" 
+    return prodForCart.length === 0
+      ? "flex desk:w-16 desk:h-16 border-0 rounded-full"
+      : "flex desk:w-16 desk:h-16 border-4 border-[#ef4444] rounded-full";
   };
 
-  console.log(basketIsActive)
-   
-
-
+  console.log(basketIsActive);
 
   return (
     <div className="flex flex-col mx-auto  sticky top-0 left-0  bg-mainColor layout z-10">
@@ -61,78 +57,94 @@ const Header = () => {
         </div>
 
         <div className="pr-6" onClick={toggleModal}>
-          <svg className={basketIsActive()} >
+          <svg className={basketIsActive()}>
             <use xlinkHref="/img/sprite/symbol-defs.svg#icon-basket-cart" />
           </svg>
         </div>
       </div>
 
-       
-
       {isModalOpen && (
-        <div
-          className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
-          
-        >
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
           <div className="bg-white p-4 rounded-lg w-[30%] h-min">
             <ModalWind onClose={() => setIsModalOpen(false)}>
-              <h1 className="flex flex-row justify-center my-5 text-2xl">Ваше замовлення</h1>
-             
-              <p className="flex flex-row justify-between text-linksTextColor">
-                Повна вартість: <span className="pr-2">{totalPrice()}</span>{" "}
+              <h1 className="flex flex-row justify-center my-5 text-2xl">
+                Ваше замовлення
+              </h1>
+
+              <p className="flex flex-row  text-linksTextColor text-2xl">
+                Повна вартість: <span className="pl-4">{totalPrice()} грн</span>{" "}
               </p>
 
-              <h1 className="flex flex-row justify-center my-5 text-2xl">Внесить ваші данні для замовлення</h1>
+              <h1 className="flex flex-row justify-center my-5 text-2xl">
+                Внесить ваші данні для замовлення
+              </h1>
               <form className="flex flex-col w-full items-center">
-                <label htmlFor="Ім'я" className="flex flex-col mb-6">Ім'я
-                  <input type="text" placeholder="Введить своє ім'я"  className={inputStyle}/>
+                <label htmlFor="Ім'я" className="flex flex-col mb-6">
+                  Ім'я
+                  <input
+                    type="text"
+                    placeholder="Введить своє ім'я"
+                    className={inputStyle}
+                  />
                 </label>
 
-                <label htmlFor="По батькові" className="flex flex-col mb-6">Ваше ім'я по батькові
-                  <input type="text" placeholder="Ваше ім'я по батькові" className={inputStyle}/>
+                <label htmlFor="По батькові" className="flex flex-col mb-6">
+                  Ваше ім'я по батькові
+                  <input
+                    type="text"
+                    placeholder="Ваше ім'я по батькові"
+                    className={inputStyle}
+                  />
                 </label>
 
-                <label htmlFor="Телефон" className="flex flex-col mb-6">Телефон
-                  <input type="text" placeholder="Введіть номер телефона" className={inputStyle}/>
+                <label htmlFor="Телефон" className="flex flex-col mb-6">
+                  Телефон
+                  <input
+                    type="text"
+                    placeholder="Введіть номер телефона"
+                    className={inputStyle}
+                  />
                 </label>
 
                 <ul>
-                {Object.keys(prodForCart).map((productId) => {
-                  const product = prodForCart[productId];
-                  return (
-                    <li
-                      key={productId}
-                      className="flex flex-row w-100 h-120 my-3 items-center"
-                    >
-                      <img
-                        src={product.img}
-                        alt={product.name}
-                        className="w-10 h-10 border-0 rounded-md mr-2"
-                      />
-                      <p>
-                        {product.name} - {product.price} грн x{" "}
-                        {product.quantity}
-                      </p>
-                      <div className="flex flex-row items-center">
-                        <div className="mx-4">
-                          <СountIncrease productId={productId} />
+                  {Object.keys(prodForCart).map((productId) => {
+                    const product = prodForCart[productId];
+                    return (
+                      <li
+                        key={productId}
+                        className="flex flex-row w-full h-120 my-3 items-center"
+                      >
+                        <div className="flex flex-row w-full items-center">
+                          <img
+                            src={product.img}
+                            alt={product.name}
+                            className="w-16 h-16 border-0 rounded-md mr-2"
+                          />
+                          <p className="text-2xl px-10">
+                            {product.name} - {product.price} грн x{" "}
+                            {product.quantity} {""} {product.units}
+                          </p>
                         </div>
-                        <div>
-                          <СountDecrease productId={productId} />
+                        <div className="flex flex-row items-center justify-center">
+                          <div className="mx-4">
+                            <СountIncrease productId={productId} />
+                          </div>
+                          <div>
+                            <СountDecrease productId={productId} />
+                          </div>
                         </div>
-                      </div>
-
-                    </li>
-                  );
-                })}
-              </ul>
-
-                
-
+                      </li>
+                    );
+                  })}
+                </ul>
               </form>
 
-              <button type="submit" className=" flex px-8 py-3 border-0 rounded-md bg-btmBg mx-auto" >Замовити</button>
-
+              <button
+                type="submit"
+                className=" flex px-8 py-3 border-0 rounded-md bg-btmBg mx-auto"
+              >
+                Замовити
+              </button>
             </ModalWind>
           </div>
         </div>
