@@ -19,11 +19,14 @@ module.exports = {
       },
       backgroundColor: {
         mainColor: "#fff",
-        headerMenuBgColor: "#f0fdf4"
+        headerMenuBgColor: "#f0fdf4",
+        btmBg: "#22c55e"
       },
       colors: {
         mainTextColor: "#fbbf24",
-        linksTextColor: "#22c55e",        
+        linksTextColor: "#22c55e", 
+        inputHoverColor: "#38bdf8",
+        basketActiveBorder: "#ef4444"    
       },     
     },
   },

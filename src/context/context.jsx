@@ -23,23 +23,32 @@ export function AppWrapper({ children }) {
     });
   };
 
-  // const selectProducts = (product) => {
-  //   setProdForCart((prev) => {
-  //     const productId = product.id;
-  //     const updatedCart = { ...prev };
-  //     if (updatedCart[productId]) {
-  //       updatedCart[productId].quantity++;
-  //     } else {
-  //       updatedCart[productId] = { ...product, quantity: 1 };
-  //     }
-  //     return updatedCart;
-  //   });
-  // };
-
   const totalPrice = () => {
     return Object.values(prodForCart).reduce((total, product) => {
       return total + product.price * product.quantity;
     }, 0);
+  };
+
+  const updateProductQuantity = (productId, quantity) => {
+    if (quantity <= 0) {
+      removeProductFromCart(productId);
+    } else {
+      setProdForCart((prevCart) => ({
+        ...prevCart,
+        [productId]: {
+          ...prevCart[productId],
+          quantity: quantity,
+        },
+      }));
+    }
+  };
+
+  const removeProductFromCart = (productId) => {
+    setProdForCart((prevCart) => {
+      const updatedCart = { ...prevCart };
+      delete updatedCart[productId];
+      return updatedCart;
+    });
   };
 
 
@@ -49,6 +58,7 @@ export function AppWrapper({ children }) {
         prodForCart: prodForCart,
         selectProducts: selectProducts,
         totalPrice: totalPrice,
+        updateProductQuantity: updateProductQuantity,
       }}
     >
       {children}

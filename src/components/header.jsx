@@ -7,15 +7,20 @@ import { useAppContext } from "../context/context";
 import ModalWind from "./modalWind";
 import useSaveLocalCart from "../hooks/saveCart";
 
+import СountIncrease from "./btm/btmIncrease"
+import СountDecrease from "./btm/btmDecrease"
+
+const inputStyle = "desk:w-[400px] py-3 pl-2 mt-1 border-[1px] border-linksTextColor hover:border-inputHoverColor focus:border-red-400"
+
+
 const Header = () => {
   const { prodForCart, totalPrice } = useAppContext();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  
 
-  const onClickOutside = (e) => {
-    setIsModalOpen(false);
-  };
+  // const onClickOutside = (e) => {
+  //   setIsModalOpen(false);
+  // };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -23,21 +28,17 @@ const Header = () => {
 
   useSaveLocalCart("myCart", prodForCart);
 
-  // const totalPrice = () => {
-  //   return prodForCart.reduce((total, product) => {
-  //     if (product.length > 0) { 
-  //       return total + product.price * product.quantity;
-  //     }
-  //     return total;
-  //   }, 0); 
-  // };
-  
+  const basketIsActive = () => {
+    return prodForCart.length === 0 ? 
+      "flex desk:w-16 desk:h-16 border-0 rounded-full"
+      : 
+      "flex desk:w-16 desk:h-16 border-4 border-[#ef4444] rounded-full" 
+  };
 
-  // const totalPrice = () => {
-     // return Object.values(prodForCart).reduce((total, product) => {
-    //   return total + product.price * product.quantity;
-    // }, 0);
-  // }
+  console.log(basketIsActive)
+   
+
+
 
   return (
     <div className="flex flex-col mx-auto  sticky top-0 left-0  bg-mainColor layout z-10">
@@ -60,32 +61,78 @@ const Header = () => {
         </div>
 
         <div className="pr-6" onClick={toggleModal}>
-          <svg className="flex desk:w-16 desk:h-16 border-0 rounded-full">
+          <svg className={basketIsActive()} >
             <use xlinkHref="/img/sprite/symbol-defs.svg#icon-basket-cart" />
           </svg>
         </div>
       </div>
 
+       
+
       {isModalOpen && (
         <div
           className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
-          onClick={onClickOutside}
+          
         >
-          <div className="bg-white p-4 rounded-lg w-[300px] h-[400px]">
+          <div className="bg-white p-4 rounded-lg w-[30%] h-min">
             <ModalWind onClose={() => setIsModalOpen(false)}>
-              <ul>
-                {Object.keys(prodForCart).map((productId) => (
-                  <li key={productId} className="flex flex-col w-100 h-120">
-                    <p className="w-8 h-8">{prodForCart[productId].img}</p>
-                    <p>                    
-                      {prodForCart[productId].name} -{" "}
-                      {prodForCart[productId].price} грн x{" "}
-                      {prodForCart[productId].quantity}
-                    </p>
-                  </li>
-                ))}
+              <h1 className="flex flex-row justify-center my-5 text-2xl">Ваше замовлення</h1>
+             
+              <p className="flex flex-row justify-between text-linksTextColor">
+                Повна вартість: <span className="pr-2">{totalPrice()}</span>{" "}
+              </p>
+
+              <h1 className="flex flex-row justify-center my-5 text-2xl">Внесить ваші данні для замовлення</h1>
+              <form className="flex flex-col w-full items-center">
+                <label htmlFor="Ім'я" className="flex flex-col mb-6">Ім'я
+                  <input type="text" placeholder="Введить своє ім'я"  className={inputStyle}/>
+                </label>
+
+                <label htmlFor="По батькові" className="flex flex-col mb-6">Ваше ім'я по батькові
+                  <input type="text" placeholder="Ваше ім'я по батькові" className={inputStyle}/>
+                </label>
+
+                <label htmlFor="Телефон" className="flex flex-col mb-6">Телефон
+                  <input type="text" placeholder="Введіть номер телефона" className={inputStyle}/>
+                </label>
+
+                <ul>
+                {Object.keys(prodForCart).map((productId) => {
+                  const product = prodForCart[productId];
+                  return (
+                    <li
+                      key={productId}
+                      className="flex flex-row w-100 h-120 my-3 items-center"
+                    >
+                      <img
+                        src={product.img}
+                        alt={product.name}
+                        className="w-10 h-10 border-0 rounded-md mr-2"
+                      />
+                      <p>
+                        {product.name} - {product.price} грн x{" "}
+                        {product.quantity}
+                      </p>
+                      <div className="flex flex-row items-center">
+                        <div className="mx-4">
+                          <СountIncrease productId={productId} />
+                        </div>
+                        <div>
+                          <СountDecrease productId={productId} />
+                        </div>
+                      </div>
+
+                    </li>
+                  );
+                })}
               </ul>
-              <p className="text-linksTextColor">Вартість: {totalPrice()}</p>
+
+                
+
+              </form>
+
+              <button type="submit" className=" flex px-8 py-3 border-0 rounded-md bg-btmBg mx-auto" >Замовити</button>
+
             </ModalWind>
           </div>
         </div>
@@ -99,3 +146,5 @@ const Header = () => {
 };
 
 export default Header;
+
+// className={`flex desk:w-16 desk:h-16 rounded-full ${prodForCart.length > 0 ? 'border-2 border-red-400' : 'border-0'}`}
