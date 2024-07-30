@@ -7,8 +7,8 @@ import { useAppContext } from "../context/context";
 import ModalWind from "./modalWind";
 import useSaveLocalCart from "../hooks/saveCart";
 
-import СountIncrease from "./btm/btmIncrease";
-import СountDecrease from "./btm/btmDecrease";
+import CountIncrease from "./btm/btmIncrease";
+import CountDecrease from "./btm/btmDecrease";
 
 import SendToTelegram from "./sentToTelegram";
 
@@ -116,22 +116,24 @@ const Header = () => {
                 onSubmit={handleSubmit}
               >
                 <label htmlFor="Ім'я" className="flex flex-col mb-6">
-                  Ім'я
+                  Ім&apos;я
                   <input
                     type="text"
-                    placeholder="Введить своє ім'я"
+                    placeholder="Введить своє ім&apos;я"
                     className={inputStyle}
                     value={name}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </label>
 
                 <label htmlFor="По батькові" className="flex flex-col mb-6">
-                  Ваше ім'я по батькові
+                  Ваше ім&apos;я по батькові
                   <input
                     type="text"
-                    placeholder="Ваше ім'я по батькові"
+                    placeholder="Ваше ім&apos;я по батькові"
                     className={inputStyle}
                     value={surname}
+                    onChange={(e) => setSurname(e.target.value)}
                   />
                 </label>
 
@@ -142,6 +144,7 @@ const Header = () => {
                     placeholder="Введіть номер телефона"
                     className={inputStyle}
                     value={phone}
+                    onChange={(e) => setPhone(e.target.value)}
                   />
                 </label>
 
@@ -154,7 +157,7 @@ const Header = () => {
                         className="flex flex-row w-full h-120 my-3 items-center"
                       >
                         <div className="flex flex-row w-full items-center">
-                          <img
+                          <Image
                             src={product.img}
                             alt={product.name}
                             className="w-16 h-16 border-0 rounded-md mr-2"
@@ -166,10 +169,10 @@ const Header = () => {
                         </div>
                         <div className="flex flex-row items-center justify-center">
                           <div className="mx-4">
-                            <СountIncrease productId={productId} />
+                            <CountIncrease productId={productId} />
                           </div>
                           <div>
-                            <СountDecrease productId={productId} />
+                            <CountDecrease productId={productId} />
                           </div>
                         </div>
                       </li>
