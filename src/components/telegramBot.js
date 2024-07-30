@@ -22,3 +22,5 @@ bot.on('message', (msg) => {
   // Отправка сообщения в чат, подтверждающего получение сообщения
   bot.sendMessage(chatId, 'Received your message');
 });
+
+

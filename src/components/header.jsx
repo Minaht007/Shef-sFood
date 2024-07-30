@@ -160,6 +160,8 @@ const Header = () => {
                           <Image
                             src={product.img}
                             alt={product.name}
+                            width={60}
+                            height={60}
                             className="w-16 h-16 border-0 rounded-md mr-2"
                           />
                           <p className="text-2xl px-10">

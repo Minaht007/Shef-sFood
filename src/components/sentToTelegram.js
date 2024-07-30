@@ -3,7 +3,7 @@ import React from 'react';
 
 const SendToTelegram = ({ name, surname, phone }) => {
 
-    console.log(name, surname, phone)
+    // console.log(name, surname, phone)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -15,13 +15,15 @@ const SendToTelegram = ({ name, surname, phone }) => {
     };
 
     try {
-      const response = await fetch("/api/server.js", {
+      const response = await fetch("/public/api/server.js", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
       });
+
+      console.log(response)
 
       if (!response.ok) {
         throw new Error("Network response was not ok");
