@@ -15,7 +15,7 @@ const SendToTelegram = ({ name, surname, phone }) => {
     };
 
     try {
-      const response = await fetch("/public/api/server.js", {
+      const response = await fetch("/api/send-to-telegram", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
