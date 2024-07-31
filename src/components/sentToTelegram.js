@@ -1,9 +1,11 @@
 "use client"
 import React from 'react';
 
+
 const SendToTelegram = ({ name, surname, phone, prodName }) => {
 
-    // console.log(name, surname, phone)
+    console.log(name, surname, phone, prodName)   
+    
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -12,7 +14,7 @@ const SendToTelegram = ({ name, surname, phone, prodName }) => {
       name,
       surname,
       phone,
-      prodName,
+      prodName
     };
 
     try {
@@ -27,6 +29,7 @@ const SendToTelegram = ({ name, surname, phone, prodName }) => {
       console.log(response)
 
       if (!response.ok) {
+       
         throw new Error("Network response was not ok");
       }
 

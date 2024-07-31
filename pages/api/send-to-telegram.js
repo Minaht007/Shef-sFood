@@ -1,9 +1,9 @@
-
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { name, surname, phone } = req.body;
+    const { name, surname, phone, prodName } = req.body;
 
-    if (!name || !surname || !phone) {
+    // Проверка на наличие всех необходимых полей
+    if (!name || !surname || !phone || !prodName) {
       return res.status(400).json({ error: 'All fields are required' });
     }
 
@@ -15,6 +15,7 @@ export default async function handler(req, res) {
       Ім'я: ${name}
       По батькові: ${surname}
       Телефон: ${phone}
+      Продукти: ${prodName}
     `;
 
     try {
@@ -29,12 +30,16 @@ export default async function handler(req, res) {
         }),
       });
 
+      // Проверка успешности ответа
       if (!response.ok) {
-        throw new Error('Error sending message');
+        const errorText = await response.text(); 
+        console.error('Error response from Telegram API:', errorText);
+        return res.status(response.status).json({ error: 'Error sending message' });
       }
 
       return res.status(200).json({ message: 'Message sent successfully' });
     } catch (error) {
+      console.error('Error during request:', error);
       return res.status(500).json({ error: error.message });
     }
   } else {

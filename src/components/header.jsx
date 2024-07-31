@@ -22,13 +22,12 @@ const Header = () => {
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
   const [phone, setPhone] = useState();
-  const [productName, setProductName] =useState([]);
+ 
 
   // const onClickOutside = (e) => {
   //   setIsModalOpen(false);
   // };
 
-  const chosenProducts = productName.nam
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -168,7 +167,7 @@ const Header = () => {
                             height={60}
                             className="w-16 h-16 border-0 rounded-md mr-2"
                           />
-                          <p className="text-2xl px-10" value={productName}>
+                          <p className="text-2xl px-10" >
                             {product.name} - {product.price} грн x{" "}
                             {product.quantity} {""} {product.units}
                           </p>
