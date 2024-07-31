@@ -1,11 +1,9 @@
 "use client"
 import React from 'react';
 
+const SendToTelegram = ({ name, surname, phone, prodName, totalPrice }) => {
 
-const SendToTelegram = ({ name, surname, phone, prodName, prodPrice }) => {
-
-    console.log(name, surname, phone, prodName)   
-    
+    // console.log(name, totalPrice)  0   
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -14,7 +12,8 @@ const SendToTelegram = ({ name, surname, phone, prodName, prodPrice }) => {
         name,
         surname,
         phone,
-        prodName
+        prodName,
+        totalPrice
       };
 
     try {

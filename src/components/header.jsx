@@ -23,15 +23,19 @@ const Header = () => {
   const [surname, setSurname] = useState();
   const [phone, setPhone] = useState();
 
-  // const onClickOutside = (e) => {
-  //   setIsModalOpen(false);
-  // };
-  
   const formatProducts = (products) => {
-      return Object.values(products).map(product => 
-        `${product.name} - ${product.price} грн x ${product.quantity} ${product.units}`
-      ).join('\n');
-    };
+    return Object.values(products).map((product) => ({
+      name: `${product.name} - ${product.price} грн x ${product.quantity} ${product.units}`,
+      id: product.id,
+    }));
+  };
+
+  // const formatProducts = (products) => {
+  //     return Object.values(products).map(product =>
+  //       `${product.name} - ${product.price} грн x ${product.quantity} ${product.units}`,
+  //       callback_data: `${product.id}`
+  //     ).join('\n');
+  //   };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -46,13 +50,14 @@ const Header = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();    
+    e.preventDefault();
 
     const formData = {
       name,
       surname,
       phone,
-      prodName: formatProducts(prodForCart),
+      prodName,
+      totalPrice,
     };
 
     try {
@@ -73,6 +78,15 @@ const Header = () => {
     } catch (error) {
       console.error("Error:", error);
     }
+  };
+
+  const Data = () => {
+    const today = new Date();
+
+    const day = String(today.getDate()).padStart(2, "0");
+    const month = String(today.getMonth() + 1).padStart(2, "0");
+    const year = today.getFullYear();
+    return `${day}.${month}.${year}`;
   };
 
   return (
@@ -109,6 +123,8 @@ const Header = () => {
               <h1 className="flex flex-row justify-center my-5 text-2xl">
                 Ваше замовлення
               </h1>
+
+              <div className="text-2xl text-mainTextColor ">{Data()}</div>
 
               <p className="flex flex-row  text-linksTextColor text-2xl">
                 Повна вартість: <span className="pl-4">{totalPrice()} грн</span>{" "}
@@ -188,10 +204,11 @@ const Header = () => {
                     );
                   })}
                   <SendToTelegram
+                    totalPrice={totalPrice()}
                     name={name}
                     surname={surname}
                     phone={phone}
-                    prodName={formatProducts(prodForCart)} // Форматированный список продуктов
+                    prodName={formatProducts(prodForCart)}
                   />
                 </ul>
               </form>
@@ -219,3 +236,7 @@ export default Header;
 // prodPrice={Object.values(prodForCart)
 //   .map((product) => product.price)
 //   .join(", ")}
+
+// const onClickOutside = (e) => {
+//   setIsModalOpen(false);
+// };
