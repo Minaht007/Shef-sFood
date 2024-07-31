@@ -1,7 +1,7 @@
 "use client"
 import React from 'react';
 
-const SendToTelegram = ({ name, surname, phone }) => {
+const SendToTelegram = ({ name, surname, phone, prodName }) => {
 
     // console.log(name, surname, phone)
 
@@ -12,6 +12,7 @@ const SendToTelegram = ({ name, surname, phone }) => {
       name,
       surname,
       phone,
+      prodName,
     };
 
     try {

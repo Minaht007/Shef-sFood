@@ -22,10 +22,13 @@ const Header = () => {
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
   const [phone, setPhone] = useState();
+  const [productName, setProductName] =useState([]);
 
   // const onClickOutside = (e) => {
   //   setIsModalOpen(false);
   // };
+
+  const chosenProducts = productName.nam
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -46,6 +49,7 @@ const Header = () => {
       name,
       surname,
       phone,
+      prodName: Object.values(prodForCart).map(product => product.name).join(", ")
     };
 
     try {
@@ -164,7 +168,7 @@ const Header = () => {
                             height={60}
                             className="w-16 h-16 border-0 rounded-md mr-2"
                           />
-                          <p className="text-2xl px-10">
+                          <p className="text-2xl px-10" value={productName}>
                             {product.name} - {product.price} грн x{" "}
                             {product.quantity} {""} {product.units}
                           </p>
@@ -180,7 +184,7 @@ const Header = () => {
                       </li>
                     );
                   })}
-                  <SendToTelegram name={name} surname={surname} phone={phone} />
+                  <SendToTelegram name={name} surname={surname} phone={phone} prodName={Object.values(prodForCart).map(product => product.name).join(", ")} />
                 </ul>
               </form>
             </ModalWind>
