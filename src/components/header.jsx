@@ -22,12 +22,16 @@ const Header = () => {
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
   const [phone, setPhone] = useState();
- 
 
   // const onClickOutside = (e) => {
   //   setIsModalOpen(false);
   // };
-
+  
+  const formatProducts = (products) => {
+      return Object.values(products).map(product => 
+        `${product.name} - ${product.price} грн x ${product.quantity} ${product.units}`
+      ).join('\n');
+    };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -42,13 +46,13 @@ const Header = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault();    
 
     const formData = {
       name,
       surname,
       phone,
-      prodName: Object.values(prodForCart).map(product => product.name).join(", ")
+      prodName: formatProducts(prodForCart),
     };
 
     try {
@@ -122,7 +126,7 @@ const Header = () => {
                   Ім&apos;я
                   <input
                     type="text"
-                    placeholder="Введить своє ім&apos;я"
+                    placeholder="Введить своє ім'я"
                     className={inputStyle}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -133,7 +137,7 @@ const Header = () => {
                   Ваше ім&apos;я по батькові
                   <input
                     type="text"
-                    placeholder="Ваше ім&apos;я по батькові"
+                    placeholder="Ваше ім'я по батькові"
                     className={inputStyle}
                     value={surname}
                     onChange={(e) => setSurname(e.target.value)}
@@ -167,7 +171,7 @@ const Header = () => {
                             height={60}
                             className="w-16 h-16 border-0 rounded-md mr-2"
                           />
-                          <p className="text-2xl px-10" >
+                          <p className="text-2xl px-10">
                             {product.name} - {product.price} грн x{" "}
                             {product.quantity} {""} {product.units}
                           </p>
@@ -183,7 +187,12 @@ const Header = () => {
                       </li>
                     );
                   })}
-                  <SendToTelegram name={name} surname={surname} phone={phone} prodName={Object.values(prodForCart).map(product => product.name).join(", ")} />
+                  <SendToTelegram
+                    name={name}
+                    surname={surname}
+                    phone={phone}
+                    prodName={formatProducts(prodForCart)} // Форматированный список продуктов
+                  />
                 </ul>
               </form>
             </ModalWind>
@@ -201,3 +210,12 @@ const Header = () => {
 export default Header;
 
 // className={`flex desk:w-16 desk:h-16 rounded-full ${prodForCart.length > 0 ? 'border-2 border-red-400' : 'border-0'}`}
+// name={name}
+// surname={surname}
+// phone={phone}
+// prodName={Object.values(prodForCart)
+//   .map((product) => product.name)
+//   .join(", ")}
+// prodPrice={Object.values(prodForCart)
+//   .map((product) => product.price)
+//   .join(", ")}

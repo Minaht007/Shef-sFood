@@ -2,20 +2,20 @@
 import React from 'react';
 
 
-const SendToTelegram = ({ name, surname, phone, prodName }) => {
+const SendToTelegram = ({ name, surname, phone, prodName, prodPrice }) => {
 
     console.log(name, surname, phone, prodName)   
     
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const formData = {
-      name,
-      surname,
-      phone,
-      prodName
-    };
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+  
+      const formData = {
+        name,
+        surname,
+        phone,
+        prodName
+      };
 
     try {
       const response = await fetch("/api/send-to-telegram", {
