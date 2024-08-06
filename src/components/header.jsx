@@ -22,6 +22,7 @@ const Header = () => {
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
   const [phone, setPhone] = useState();
+  const [successMessage, setSuccessMessage] = useState("");
 
   const formatProducts = (products) => {
     return Object.values(products).map((product) => ({
@@ -29,13 +30,6 @@ const Header = () => {
       id: product.id,
     }));
   };
-
-  // const formatProducts = (products) => {
-  //     return Object.values(products).map(product =>
-  //       `${product.name} - ${product.price} грн x ${product.quantity} ${product.units}`,
-  //       callback_data: `${product.id}`
-  //     ).join('\n');
-  //   };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -49,9 +43,12 @@ const Header = () => {
       : "flex desk:w-16 desk:h-16 border-4 border-[#ef4444] rounded-full";
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const handleSuccess = () => {    
+    setIsModalOpen(!isModalOpen); 
+  };
 
+  const handleSubmitHeader = async (e) => {
+    e.preventDefault();
     const formData = {
       name,
       surname,
@@ -59,7 +56,6 @@ const Header = () => {
       prodName,
       totalPrice,
     };
-
     try {
       const response = await fetch("/api/send-to-telegram", {
         method: "POST",
@@ -72,12 +68,15 @@ const Header = () => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
-
       const result = await response.json();
+      handleSuccess("Ваше замовлення прийняте")     
       console.log(result);
-    } catch (error) {
-      console.error("Error:", error);
     }
+    catch (error) {
+      console.error("Error:", error);
+      setSuccessMessage("");
+    }
+    console.log(result)
   };
 
   const Data = () => {
@@ -136,7 +135,7 @@ const Header = () => {
 
               <form
                 className="flex flex-col w-full items-center"
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmitHeader}
               >
                 <label htmlFor="Ім'я" className="flex flex-col mb-6">
                   Ім&apos;я
@@ -203,12 +202,12 @@ const Header = () => {
                       </li>
                     );
                   })}
-                  <SendToTelegram
+                  <SendToTelegram                  
                     totalPrice={totalPrice()}
                     name={name}
                     surname={surname}
                     phone={phone}
-                    prodName={formatProducts(prodForCart)}
+                    prodName={formatProducts(prodForCart)}                    
                   />
                 </ul>
               </form>
@@ -240,3 +239,43 @@ export default Header;
 // const onClickOutside = (e) => {
 //   setIsModalOpen(false);
 // };
+
+// const handleSubmit = async (e) => {
+//   e.preventDefault();
+
+//   const formData = {
+//     name,
+//     surname,
+//     phone,
+//     prodName,
+//     totalPrice,
+//   };
+
+//   try {
+//     const response = await fetch("/api/send-to-telegram", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(formData),
+//     });
+
+//     if (!response.ok) {
+//       throw new Error("Network response was not ok");
+//     }
+//     const result = await response.json();
+//     alert("Ваше замовлення прийняте");
+//     setIsModalOpen(false);
+//     console.log(result);
+
+//   } catch (error) {
+//     console.error("Error:", error);
+//     setSuccessMessage("");
+//   }
+// };
+  // const formatProducts = (products) => {
+  //     return Object.values(products).map(product =>
+  //       `${product.name} - ${product.price} грн x ${product.quantity} ${product.units}`,
+  //       callback_data: `${product.id}`
+  //     ).join('\n');
+  //   };

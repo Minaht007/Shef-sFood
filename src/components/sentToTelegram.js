@@ -1,9 +1,9 @@
 "use client"
-import React from 'react';
+import React, { useState } from 'react';
 
-const SendToTelegram = ({ name, surname, phone, prodName, totalPrice }) => {
-
-    // console.log(name, totalPrice)  0   
+const SendToTelegram = ({ name, surname, phone, prodName, totalPrice }) => {    
+  
+  
 
     const handleSubmit = async (e) => {
       e.preventDefault();
@@ -32,12 +32,13 @@ const SendToTelegram = ({ name, surname, phone, prodName, totalPrice }) => {
         throw new Error("Network response was not ok");
       }
 
-      const result = await response.json();
+      const result = await response.json();          
       console.log(result);
     } catch (error) {
       console.error("Error:", error);
     }
   };
+  
 
   return (
     <button onClick={handleSubmit} className="flex px-8 py-3 border-0 rounded-md bg-btmBg mx-auto">

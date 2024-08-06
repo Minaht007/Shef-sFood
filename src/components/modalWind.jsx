@@ -11,7 +11,7 @@ const ModalWind = ({onClose, children})=> {
             <div>
                 <div className=" relative" >
 
-                    <button onClick={onClose}>
+                    <button onClick={onClose} >
                         <svg className="w-6 h-6 absolute top-1 right-1 ">
                             <use xlinkHref="/icons/symbol-defs.svg#icon-close" />
                         </svg>
