@@ -12,6 +12,7 @@ import CountDecrease from "./btm/btmDecrease";
 
 import SendToTelegram from "./sentToTelegram";
 
+
 const inputStyle =
   "desk:w-[400px] py-3 pl-2 mt-1 border-[1px] border-linksTextColor hover:border-inputHoverColor focus:border-red-400";
 
@@ -43,41 +44,12 @@ const Header = () => {
       : "flex desk:w-16 desk:h-16 border-4 border-[#ef4444] rounded-full";
   };
 
-  const handleSuccess = () => {    
-    setIsModalOpen(!isModalOpen); 
+  const handleSuccess = () => {
+    alert("Succes")
+    setIsModalOpen(false); 
   };
 
-  const handleSubmitHeader = async (e) => {
-    e.preventDefault();
-    const formData = {
-      name,
-      surname,
-      phone,
-      prodName,
-      totalPrice,
-    };
-    try {
-      const response = await fetch("/api/send-to-telegram", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
 
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const result = await response.json();
-      handleSuccess("Ваше замовлення прийняте")     
-      console.log(result);
-    }
-    catch (error) {
-      console.error("Error:", error);
-      setSuccessMessage("");
-    }
-    console.log(result)
-  };
 
   const Data = () => {
     const today = new Date();
@@ -116,7 +88,7 @@ const Header = () => {
       </div>
 
       {isModalOpen && (
-        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center">
+        <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center" >
           <div className="bg-white p-4 rounded-lg w-[30%] h-min">
             <ModalWind onClose={() => setIsModalOpen(false)}>
               <h1 className="flex flex-row justify-center my-5 text-2xl">
@@ -135,7 +107,7 @@ const Header = () => {
 
               <form
                 className="flex flex-col w-full items-center"
-                onSubmit={handleSubmitHeader}
+                // onSubmit={handleSubmitHeader}
               >
                 <label htmlFor="Ім'я" className="flex flex-col mb-6">
                   Ім&apos;я
@@ -207,7 +179,9 @@ const Header = () => {
                     name={name}
                     surname={surname}
                     phone={phone}
-                    prodName={formatProducts(prodForCart)}                    
+                    prodName={formatProducts(prodForCart)}    
+                    onSuccess={handleSuccess}               
+                                      
                   />
                 </ul>
               </form>
@@ -224,58 +198,3 @@ const Header = () => {
 };
 
 export default Header;
-
-// className={`flex desk:w-16 desk:h-16 rounded-full ${prodForCart.length > 0 ? 'border-2 border-red-400' : 'border-0'}`}
-// name={name}
-// surname={surname}
-// phone={phone}
-// prodName={Object.values(prodForCart)
-//   .map((product) => product.name)
-//   .join(", ")}
-// prodPrice={Object.values(prodForCart)
-//   .map((product) => product.price)
-//   .join(", ")}
-
-// const onClickOutside = (e) => {
-//   setIsModalOpen(false);
-// };
-
-// const handleSubmit = async (e) => {
-//   e.preventDefault();
-
-//   const formData = {
-//     name,
-//     surname,
-//     phone,
-//     prodName,
-//     totalPrice,
-//   };
-
-//   try {
-//     const response = await fetch("/api/send-to-telegram", {
-//       method: "POST",
-//       headers: {
-//         "Content-Type": "application/json",
-//       },
-//       body: JSON.stringify(formData),
-//     });
-
-//     if (!response.ok) {
-//       throw new Error("Network response was not ok");
-//     }
-//     const result = await response.json();
-//     alert("Ваше замовлення прийняте");
-//     setIsModalOpen(false);
-//     console.log(result);
-
-//   } catch (error) {
-//     console.error("Error:", error);
-//     setSuccessMessage("");
-//   }
-// };
-  // const formatProducts = (products) => {
-  //     return Object.values(products).map(product =>
-  //       `${product.name} - ${product.price} грн x ${product.quantity} ${product.units}`,
-  //       callback_data: `${product.id}`
-  //     ).join('\n');
-  //   };
