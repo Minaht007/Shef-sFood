@@ -17,6 +17,7 @@ const inputStyle =
   "desk:w-[400px] py-3 pl-2 mt-1 border-[1px] border-linksTextColor hover:border-inputHoverColor focus:border-red-400";
 
 const Header = () => {
+  
   const { prodForCart, totalPrice } = useAppContext();
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -45,7 +46,7 @@ const Header = () => {
   };
 
   const handleSuccess = () => {
-    alert("Succes")
+    alert("Ваше замовлення прийнято")
     setIsModalOpen(false); 
   };
 

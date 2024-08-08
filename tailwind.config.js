@@ -24,6 +24,7 @@ module.exports = {
       },
       colors: {
         mainTextColor: "#fbbf24",
+        secondMainTextColor: "#f8fafc",
         linksTextColor: "#22c55e", 
         inputHoverColor: "#38bdf8",
         basketActiveBorder: "#ef4444"    
