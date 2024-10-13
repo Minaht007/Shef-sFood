@@ -148,7 +148,7 @@ const Header = () => {
 
       {isModalOpen && (
         <div className="fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center" >
-          <div className="bg-white p-4 rounded-lg w-[30%] h-min">
+          <div className="bg-white p-4 rounded-lg sm:w-[80%] w-[30%] h-min">
             <ModalWind onClose={() => setIsModalOpen(false)}>
               <h1 className="flex flex-row justify-center my-5 text-2xl">
                 Ваше замовлення
