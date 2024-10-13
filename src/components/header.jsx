@@ -154,13 +154,13 @@ const Header = () => {
                 Ваше замовлення
               </h1>
 
-              <div className="text-2xl text-mainTextColor ">{Data()}</div>
+              <div className="sm:text-lg text-2xl text-mainTextColor ">{Data()}</div>
 
-              <p className="flex flex-row  text-linksTextColor text-2xl">
+              <p className="flex flex-row  text-linksTextColor sm:text-lg text-2xl">
                 Повна вартість: <span className="pl-4">{totalPrice()} грн</span>{" "}
               </p>
 
-              <h1 className="flex flex-row justify-center my-5 text-2xl">
+              <h1 className="flex flex-row justify-center my-5 sm:text-lg text-2xl">
                 Внесить ваші данні для замовлення
               </h1>
 
@@ -218,7 +218,7 @@ const Header = () => {
                             alt={product.name}
                             width={60}
                             height={60}
-                            className="w-16 h-16 border-0 rounded-md mr-2"
+                            className="sm:w-10 sm:h-10 w-16 h-16 border-0 rounded-md pr-2"
                           />
                           <p className=" sm:text-lg text-2xl sm:px-2 px-10">
                             {product.name} - {product.price} грн x{" "}
