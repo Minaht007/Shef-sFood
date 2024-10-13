@@ -18,7 +18,7 @@ import Burger from "./burgerMenu"
 
 const headerLinkStyle = "sm:text-[12px] desk:text-xl sm:px-2 md:px-3"
 const inputStyle =
-  "desk:w-[400px] py-3 pl-2 mt-1 border-[1px] border-linksTextColor hover:border-inputHoverColor focus:border-red-400";
+  "desk:w-[400px] sm:py-2 py-3 pl-2 mt-1 border-[1px] border-linksTextColor hover:border-inputHoverColor focus:border-red-400";
 
 const Header = () => {
   
@@ -168,7 +168,7 @@ const Header = () => {
                 className="flex flex-col w-full items-center"
                 // onSubmit={handleSubmitHeader}
               >
-                <label htmlFor="Ім'я" className="flex flex-col mb-6">
+                <label htmlFor="Ім'я" className="flex flex-col sm:mb-3 mb-6">
                   Ім&apos;я
                   <input
                     type="text"
@@ -180,7 +180,7 @@ const Header = () => {
                   />
                 </label>
 
-                <label htmlFor="По батькові" className="flex flex-col mb-6">
+                <label htmlFor="По батькові" className="flex flex-col sm:mb-3 mb-6">
                   Ваше ім&apos;я по батькові
                   <input
                     type="text"
@@ -192,7 +192,7 @@ const Header = () => {
                   />
                 </label>
 
-                <label htmlFor="Телефон" className="flex flex-col mb-6">
+                <label htmlFor="Телефон" className="flex flex-col sm:mb-3 mb-6">
                   Телефон
                   <input
                     type="phone"
@@ -220,7 +220,7 @@ const Header = () => {
                             height={60}
                             className="w-16 h-16 border-0 rounded-md mr-2"
                           />
-                          <p className="text-2xl px-10">
+                          <p className=" text-2xl px-10">
                             {product.name} - {product.price} грн x{" "}
                             {product.quantity} {""} {product.units}
                           </p>

@@ -47,7 +47,7 @@ const SendToTelegram = ({ name, surname, phone, prodName, totalPrice, onSuccess 
   
 
   return (
-    <button onClick={handleSubmit} className="flex px-8 py-3 border-0 rounded-md bg-btmBg mx-auto">
+    <button onClick={handleSubmit} className="flex sm:px-4 sm:py-2 px-8 py-3 border-0 rounded-md bg-btmBg mx-auto">
       Замовити
     </button>
   );
