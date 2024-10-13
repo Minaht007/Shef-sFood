@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
-import Logo from "../../public/img/basketWithFoodLogo.jpg";
+// import Logo from "../../public/img/";
+import BurgerMenuIcons from "../../public/img/other/burger.png"
 import Menu from "./menu";
 import { useState } from "react";
 import { useAppContext } from "../context/context";
@@ -12,7 +13,10 @@ import CountDecrease from "./btm/btmDecrease";
 
 import SendToTelegram from "./sentToTelegram";
 
+import Burger from "./burgerMenu"
 
+
+const headerLinkStyle = "sm:text-[12px] desk:text-xl sm:px-2 md:px-3"
 const inputStyle =
   "desk:w-[400px] py-3 pl-2 mt-1 border-[1px] border-linksTextColor hover:border-inputHoverColor focus:border-red-400";
 
@@ -24,6 +28,7 @@ const Header = () => {
   const [name, setName] = useState();
   const [surname, setSurname] = useState();
   const [phone, setPhone] = useState();
+  const [burgerMenuIsOpen, setBurgerMenuIsOpen] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
 
   const formatProducts = (products) => {
@@ -37,16 +42,21 @@ const Header = () => {
     setIsModalOpen(!isModalOpen);
   };
 
+  const toggleClickBurger = () => {
+    setBurgerMenuIsOpen(!burgerMenuIsOpen);
+  };
+
   useSaveLocalCart("myCart", prodForCart);
 
   const basketIsActive = () => {
     return prodForCart.length === 0
-      ? "flex desk:w-16 desk:h-16 border-0 rounded-full"
-      : "flex desk:w-16 desk:h-16 border-4 border-[#ef4444] rounded-full";
+      ? "flex sm:w-10 sm:h-10 md:w-12 md:h-12 desk:w-16 desk:h-16 border-0 rounded-full py-1 px-1"
+      : "flex sm:w-10 sm:h-10 md:w-12 md:h-12 desk:w-16 desk:h-16 border-4 border-[#ef4444] rounded-full";
   };
 
   const handleSuccess = () => {
     alert("Ваше замовлення прийнято")
+    setSuccessMessage("Ваше замовлення прийнято")
     setIsModalOpen(false); 
   };
 
@@ -61,24 +71,72 @@ const Header = () => {
     return `${day}.${month}.${year}`;
   };
 
+   const formatPhoneNumber = (value) => {
+    
+    const cleaned = value.replace(/\D/g, '');
+    
+    
+    const limited = cleaned.slice(0, 18);
+
+   
+    let formatted = '';
+    
+    // Код страны
+    if (limited.length > 0) {
+      formatted = `+${limited.slice(0, 2)}`; 
+    }
+    
+    // Код оператора
+    if (limited.length > 2) {
+      formatted += ` (${limited.slice(2, 5)}`; 
+    }
+    if (limited.length > 5) {
+      formatted += `) ${limited.slice(5, 8)}`; 
+    }
+    if (limited.length > 8) {
+      formatted += `-${limited.slice(8, 10)}`; 
+    }
+    if (limited.length > 10) {
+      formatted += `-${limited.slice(10, 15)}`; 
+    }
+    
+    return formatted;
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setPhone(formatPhoneNumber(value));
+  };
+
   return (
     <div className="flex flex-col mx-auto  sticky top-0 left-0  bg-mainColor layout z-10">
-      <div className="flex flex-row items-center ">
-        <div className="flex px-16 py-3">
-          <Image
-            src={Logo}
-            alt="logo"
-            width={100}
-            height={200}
-            className="border-0 rounded-md w-[40px] h-60px desk:w-[80px] desk:h-[80px] deskXL:w-[100px] deskXL:h-[100px]  "
-          />
+      <div className="flex flex-row items-center w-screen justify-between layout">
+        <div className="flex py-3 relative md:mx-4 desk:mx-16">
+        <div onClick={() => setBurgerMenuIsOpen(!burgerMenuIsOpen)} className="sm:ml-4 md:hidden desk:hidden sm:mr-24" >
+          <Image src={BurgerMenuIcons} alt="burger" width={40} height={40} />
+          <Burger isOpen={burgerMenuIsOpen} onClick={toggleClickBurger} />
         </div>
 
-        <div className="flex  mx-auto">
-          <p className="text-xl">Про нас</p>
-          <p className="text-xl px-10">Доставки</p>
-          <p className="text-xl">Розрахунок</p>
-          <p className="text-xl pl-10">Правила</p>
+        {/* <svg className="w-100 h-40">
+          <use xlinkHref="/icons/symbol-defs.svg#icon-logoTextSVG" className="w-100 fill-green" />
+        </svg>
+         */}
+          {/* <Image
+            src={Logo}
+            alt="logo"
+            width={40}
+            height={60}
+            className="border-0 rounded-md w-full h-80px desk:w-full desk:h-[60px] deskXL:w-[100px] deskXL:h-[100px]   "
+          />           */}
+        </div>   
+
+           
+
+        <div className="flex flex-row sm:hidden md:flex desk:flex justify-center">
+          <p className={headerLinkStyle}>Про нас</p>
+          <p className={headerLinkStyle}>Доставки</p>
+          <p className={headerLinkStyle}>Розрахунок</p>
+          <p className={headerLinkStyle}>Правила</p>
         </div>
 
         <div className="pr-6" onClick={toggleModal}>
@@ -115,6 +173,7 @@ const Header = () => {
                   <input
                     type="text"
                     placeholder="Введить своє ім'я"
+                    required
                     className={inputStyle}
                     value={name}
                     onChange={(e) => setName(e.target.value)}
@@ -125,7 +184,8 @@ const Header = () => {
                   Ваше ім&apos;я по батькові
                   <input
                     type="text"
-                    placeholder="Ваше ім'я по батькові"
+                    placeholder="Фамілія"
+                    required
                     className={inputStyle}
                     value={surname}
                     onChange={(e) => setSurname(e.target.value)}
@@ -135,11 +195,12 @@ const Header = () => {
                 <label htmlFor="Телефон" className="flex flex-col mb-6">
                   Телефон
                   <input
-                    type="text"
+                    type="phone"
                     placeholder="Введіть номер телефона"
+                    required
                     className={inputStyle}
                     value={phone}
-                    onChange={(e) => setPhone(e.target.value)}
+                    onChange={handleChange}
                   />
                 </label>
 
@@ -191,11 +252,12 @@ const Header = () => {
         </div>
       )}
 
-      <div>
+      <div className="hidden md:flex">
         <Menu />
-      </div>
+      </div>   
     </div>
   );
 };
 
 export default Header;
+
